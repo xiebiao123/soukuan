@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.wanshifu.mapper.CustomerMapper">
-  <resultMap id="BaseResultMap" type="com.wanshifu.domains.po.Customer">
+<mapper namespace="com.soukuan.mapper.CustomerMapper">
+  <resultMap id="BaseResultMap" type="com.soukuan.domain.po.Customer">
     <!--
       WARNING - @mbg.generated
     -->

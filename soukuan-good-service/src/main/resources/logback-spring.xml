@@ -4,8 +4,12 @@ scanPeriod:设置监测配置文件是否有修改的时间间隔，如果没有
 当scan为true时，此属性生效。默认的时间间隔为1分钟。
 debug:当此属性设置为true时，将打印出logback内部日志信息，实时查看logback运行状态。默认值为false。 -->
 <configuration scan="true" scanPeriod="60 seconds" debug="false">
-    <contextName>account-service</contextName>
     <springProperty scope="context" name="LOG_HOME" source="logging.path"/>
+    <!--
+    <springProperty scope="context" name="KAFKA_ADDRESSES" source="spring.cloud.stream.kafka.binder.brokers"/>
+    -->
+    <springProperty scope="context" name="springAppName" source="spring.application.name"/>
+    <contextName>soukuan-good-service</contextName>
 
     <!-- 控制台输出 -->
     <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
@@ -28,7 +32,7 @@ debug:当此属性设置为true时，将打印出logback内部日志信息，实
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
             <!-- 滚动时产生的文件的存放位置及文件名称 %d{yyyy-MM-dd}：按天进行日志滚动 %i：当文件大小超过maxFileSize时，按照i进行文件滚动 -->
             <fileNamePattern>${LOG_HOME}/app/app-%d{yyyy-MM-dd}-%i.log</fileNamePattern>
-            <!-- 可选节点，控制保留的归档文件的最大数量，超出数量就删除旧文件。假设设置每天滚动， 且maxHistory是30，则只保存最近30天的文件，删除之前的旧文件。注意，删除旧文件是， 那些为了归档而创建的目录也会被删除。 -->
+            <!-- 可选节点，控制保留的归档文件的最大数量，超出数量就删除旧文件。假设设置每天滚动， 且maxHistory是365，则只保存最近365天的文件，删除之前的旧文件。注意，删除旧文件是， 那些为了归档而创建的目录也会被删除。 -->
             <MaxHistory>30</MaxHistory>
             <!-- 当日志文件超过maxFileSize指定的大小是，根据上面提到的%i进行日志文件滚动 注意此处配置SizeBasedTriggeringPolicy是无法实现按文件大小进行滚动的，必须配置timeBasedFileNamingAndTriggeringPolicy -->
             <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
@@ -56,7 +60,7 @@ debug:当此属性设置为true时，将打印出logback内部日志信息，实
         </filter>
     </appender>
 
-    <appender name="apiRequestLog" class="ch.qos.logback.core.rolling.RollingFileAppender">
+    <appender name="apiAccessLog" class="ch.qos.logback.core.rolling.RollingFileAppender">
         <encoder>
             <!-- 日志输出格式：%d表示日期时间，%thread表示线程名，%-5level：级别从左显示5个字符宽度 %logger{50} 表示logger名字最长50个字符，否则按照句点分割。 %msg：日志消息，%n是换行符 -->
             <pattern>[%5p] %d{yyyy-MM-dd HH:mm:ss SSS} [%X{SessionID}][%X{RequestID}] >>> %m %n</pattern>
@@ -68,7 +72,7 @@ debug:当此属性设置为true时，将打印出logback内部日志信息，实
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
             <!-- 滚动时产生的文件的存放位置及文件名称 %d{yyyy-MM-dd}：按天进行日志滚动 %i：当文件大小超过maxFileSize时，按照i进行文件滚动 -->
             <fileNamePattern>${LOG_HOME}/access/access-%d{yyyy-MM-dd}-%i.log</fileNamePattern>
-            <!-- 可选节点，控制保留的归档文件的最大数量，超出数量就删除旧文件。假设设置每天滚动， 且maxHistory是30，则只保存最近30天的文件，删除之前的旧文件。注意，删除旧文件是， 那些为了归档而创建的目录也会被删除。 -->
+            <!-- 可选节点，控制保留的归档文件的最大数量，超出数量就删除旧文件。假设设置每天滚动， 且maxHistory是365，则只保存最近365天的文件，删除之前的旧文件。注意，删除旧文件是， 那些为了归档而创建的目录也会被删除。 -->
             <MaxHistory>30</MaxHistory>
             <!-- 当日志文件超过maxFileSize指定的大小是，根据上面提到的%i进行日志文件滚动 注意此处配置SizeBasedTriggeringPolicy是无法实现按文件大小进行滚动的，必须配置timeBasedFileNamingAndTriggeringPolicy -->
             <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
@@ -84,12 +88,12 @@ debug:当此属性设置为true时，将打印出logback内部日志信息，实
             <charset>UTF-8</charset>
         </encoder>
         <!-- 指定日志文件的名称 -->
-        <file>${LOG_HOME}/consume-api/consume-api.log</file>
+        <file>${LOG_HOME}/consume/consume.log</file>
         <!-- 当发生滚动时，决定 RollingFileAppender 的行为，涉及文件移动和重命名 TimeBasedRollingPolicy： 最常用的滚动策略，它根据时间来制定滚动策略，既负责滚动也负责出发滚动。 -->
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
             <!-- 滚动时产生的文件的存放位置及文件名称 %d{yyyy-MM-dd}：按天进行日志滚动 %i：当文件大小超过maxFileSize时，按照i进行文件滚动 -->
-            <fileNamePattern>${LOG_HOME}/consume-api/consume-api-%d{yyyy-MM-dd}-%i.log</fileNamePattern>
-            <!-- 可选节点，控制保留的归档文件的最大数量，超出数量就删除旧文件。假设设置每天滚动， 且maxHistory是30，则只保存最近30天的文件，删除之前的旧文件。注意，删除旧文件是， 那些为了归档而创建的目录也会被删除。 -->
+            <fileNamePattern>${LOG_HOME}/consume/consume-%d{yyyy-MM-dd}-%i.log</fileNamePattern>
+            <!-- 可选节点，控制保留的归档文件的最大数量，超出数量就删除旧文件。假设设置每天滚动， 且maxHistory是365，则只保存最近365天的文件，删除之前的旧文件。注意，删除旧文件是， 那些为了归档而创建的目录也会被删除。 -->
             <MaxHistory>30</MaxHistory>
             <!-- 当日志文件超过maxFileSize指定的大小是，根据上面提到的%i进行日志文件滚动 注意此处配置SizeBasedTriggeringPolicy是无法实现按文件大小进行滚动的，必须配置timeBasedFileNamingAndTriggeringPolicy -->
             <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
@@ -98,45 +102,111 @@ debug:当此属性设置为true时，将打印出logback内部日志信息，实
         </rollingPolicy>
     </appender>
 
+    <appender name="mqLog" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <encoder>
+            <!-- 日志输出格式：%d表示日期时间，%thread表示线程名，%-5level：级别从左显示5个字符宽度 %logger{50} 表示logger名字最长50个字符，否则按照句点分割。 %msg：日志消息，%n是换行符 -->
+            <pattern>[%5p] %d{yyyy-MM-dd HH:mm:ss SSS} [%X{SessionID}][%X{RequestID}] >>> %m %n</pattern>
+            <charset>UTF-8</charset>
+        </encoder>
+        <!-- 指定日志文件的名称 -->
+        <file>${LOG_HOME}/mq/mq.log</file>
+        <!-- 当发生滚动时，决定 RollingFileAppender 的行为，涉及文件移动和重命名 TimeBasedRollingPolicy： 最常用的滚动策略，它根据时间来制定滚动策略，既负责滚动也负责出发滚动。 -->
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <!-- 滚动时产生的文件的存放位置及文件名称 %d{yyyy-MM-dd}：按天进行日志滚动 %i：当文件大小超过maxFileSize时，按照i进行文件滚动 -->
+            <fileNamePattern>${LOG_HOME}/mq/mq-%d{yyyy-MM-dd}-%i.log</fileNamePattern>
+            <!-- 可选节点，控制保留的归档文件的最大数量，超出数量就删除旧文件。假设设置每天滚动， 且maxHistory是365，则只保存最近365天的文件，删除之前的旧文件。注意，删除旧文件是， 那些为了归档而创建的目录也会被删除。 -->
+            <MaxHistory>30</MaxHistory>
+            <!-- 当日志文件超过maxFileSize指定的大小是，根据上面提到的%i进行日志文件滚动 注意此处配置SizeBasedTriggeringPolicy是无法实现按文件大小进行滚动的，必须配置timeBasedFileNamingAndTriggeringPolicy -->
+            <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                <maxFileSize>100MB</maxFileSize>
+            </timeBasedFileNamingAndTriggeringPolicy>
+        </rollingPolicy>
+    </appender>
+    <!--
+    <appender name="kafkaAppender" class="com.github.danielwegener.logback.kafka.KafkaAppender">
+        <encoder class="net.logstash.logback.encoder.LoggingEventCompositeJsonEncoder">
+            <providers>
+                <timestamp>
+                    <timeZone>GMT+8</timeZone>
+                </timestamp>
+                <pattern>
+                    <pattern>
+                        {
+                        "severity": "%level",
+                        "service": "${springAppName:-}",
+                        "trace": "%X{X-B3-TraceId:-}",
+                        "span": "%X{X-B3-SpanId:-}",
+                        "parent": "%X{X-B3-ParentSpanId:-}",
+                        "exportable": "%X{X-Span-Export:-}",
+                        "pid": "${PID:-}",
+                        "thread": "%thread",
+                        "class": "%logger{40}",
+                        "rest": "%message"
+                        }
+                    </pattern>
+                </pattern>
+            </providers>
+        </encoder>
+        <topic>logs</topic>
+        <keyingStrategy class="com.github.danielwegener.logback.kafka.keying.NoKeyKeyingStrategy" />
+        <deliveryStrategy class="com.github.danielwegener.logback.kafka.delivery.AsynchronousDeliveryStrategy" />
+        <producerConfig>bootstrap.servers=dev-kafka-service.wanshifu.com:9092</producerConfig>
+        <appender-ref ref="STDOUT" />
+    </appender>
+    -->
     <springProfile name="dev">
-        <logger name="com.wanshifu.mapper" level="DEBUG" additivity="false"/>
+        <logger name="com.soukuan.mapper" level="DEBUG"/>
 
-        <logger name="com.wanshifu.common.log.ControllerLogAspect" level="DEBUG" additivity="false">
-            <appender-ref ref="apiRequestLog"/>
+        <logger name="com.soukuan.common.log.ControllerLogAspect" level="DEBUG">
+            <appender-ref ref="apiAccessLog"/>
         </logger>
 
-        <logger name="com.wanshifu.common.base.BaseHttpApiService" level="DEBUG" additivity="false">
+        <logger name="com.soukuan.api.service" level="DEBUG">
             <appender-ref ref="apiConsumeLog"/>
         </logger>
 
+        <logger name="com.soukuan.service.impl.MqSendServiceImpl" level="DEBUG">
+            <appender-ref ref="mqLog"/>
+        </logger>
+        <root level="INFO">
+            <appender-ref ref="STDOUT"/>
+        </root>
     </springProfile>
     <springProfile name="test">
-        <logger name="com.wanshifu.mapper" level="DEBUG" additivity="false"/>
+        <logger name="com.soukuan.mapper" level="DEBUG"/>
 
-        <logger name="com.wanshifu.common.log.ControllerLogAspect" level="DEBUG" additivity="false">
-            <appender-ref ref="apiRequestLog"/>
+        <logger name="com.soukuan.common.log.ControllerLogAspect" level="DEBUG">
+            <appender-ref ref="apiAccessLog"/>
         </logger>
 
-        <logger name="com.wanshifu.common.base.BaseHttpApiService" level="DEBUG" additivity="false">
+        <logger name="com.soukuan.api.service" level="DEBUG">
             <appender-ref ref="apiConsumeLog"/>
         </logger>
 
+        <logger name="com.soukuan.service.impl.MqSendServiceImpl" level="DEBUG">
+            <appender-ref ref="mqLog"/>
+        </logger>
     </springProfile>
     <springProfile name="prod">
-        <logger name="com.wanshifu.mapper" level="INFO"/>
+        <logger name="com.soukuan.mapper" level="INFO"/>
 
-        <logger name="com.wanshifu.common.log.ControllerLogAspect" level="INFO" additivity="false">
-            <appender-ref ref="apiRequestLog"/>
+        <logger name="com.soukuan.common.log.ControllerLogAspect" level="INFO">
+            <appender-ref ref="apiAccessLog"/>
         </logger>
 
-        <logger name="com.wanshifu.common.base.BaseHttpApiService" level="INFO" additivity="false">
+        <logger name="com.soukuan.api.service" level="INFO">
             <appender-ref ref="apiConsumeLog"/>
         </logger>
 
+        <logger name="com.soukuan.service.impl.MqSendServiceImpl" level="INFO">
+            <appender-ref ref="mqLog"/>
+        </logger>
     </springProfile>
-
     <root level="INFO">
         <appender-ref ref="STDOUT"/>
+        <!--
+        <appender-ref ref="kafkaAppender"/>
+        -->
         <appender-ref ref="appLogFileAppender"/>
         <appender-ref ref="errorLogFileAppender"/>
     </root>
