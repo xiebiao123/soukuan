@@ -10,6 +10,11 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>soukuan-car-service</artifactId>
+    <packaging>pom</packaging>
+    <modules>
+        <module>car-service-client</module>
+        <module>car-service-web</module>
+    </modules>
 
 
 </project>

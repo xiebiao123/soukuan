@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.soukuan.mapper.WareMapper">
+  <resultMap id="BaseResultMap" type="com.soukuan.common.good.domain.Ware">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="id" jdbcType="VARCHAR" property="id" />
+    <result column="good_id" jdbcType="VARCHAR" property="goodId" />
+    <result column="groupgood_id" jdbcType="VARCHAR" property="groupgoodId" />
+    <result column="code" jdbcType="VARCHAR" property="code" />
+    <result column="stock" jdbcType="INTEGER" property="stock" />
+    <result column="price_discount" jdbcType="DECIMAL" property="priceDiscount" />
+    <result column="sort" jdbcType="INTEGER" property="sort" />
+    <result column="pic" jdbcType="VARCHAR" property="pic" />
+    <result column="pic_id" jdbcType="VARCHAR" property="picId" />
+    <result column="good_val_id" jdbcType="VARCHAR" property="goodValId" />
+    <result column="good_val" jdbcType="VARCHAR" property="goodVal" />
+  </resultMap>
+</mapper>

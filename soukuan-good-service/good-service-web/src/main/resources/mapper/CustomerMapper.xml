@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.soukuan.mapper.CustomerMapper">
+  <resultMap id="BaseResultMap" type="com.soukuan.common.good.domain.Customer">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="id" jdbcType="VARCHAR" property="id" />
+    <result column="type" jdbcType="VARCHAR" property="type" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="card_number" jdbcType="VARCHAR" property="cardNumber" />
+    <result column="code" jdbcType="VARCHAR" property="code" />
+    <result column="sex" jdbcType="VARCHAR" property="sex" />
+    <result column="account" jdbcType="VARCHAR" property="account" />
+    <result column="pwd" jdbcType="VARCHAR" property="pwd" />
+    <result column="payables" jdbcType="DECIMAL" property="payables" />
+    <result column="vip_level_id" jdbcType="VARCHAR" property="vipLevelId" />
+    <result column="vip_level_name" jdbcType="VARCHAR" property="vipLevelName" />
+    <result column="credits" jdbcType="DECIMAL" property="credits" />
+    <result column="company_name" jdbcType="VARCHAR" property="companyName" />
+    <result column="company_address" jdbcType="VARCHAR" property="companyAddress" />
+    <result column="linkman" jdbcType="VARCHAR" property="linkman" />
+    <result column="mobile" jdbcType="VARCHAR" property="mobile" />
+    <result column="telephone" jdbcType="VARCHAR" property="telephone" />
+    <result column="email" jdbcType="VARCHAR" property="email" />
+    <result column="area_ids" jdbcType="VARCHAR" property="areaIds" />
+    <result column="area_names" jdbcType="VARCHAR" property="areaNames" />
+    <result column="street" jdbcType="VARCHAR" property="street" />
+    <result column="zip_code" jdbcType="VARCHAR" property="zipCode" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+    <result column="creator_id" jdbcType="VARCHAR" property="creatorId" />
+    <result column="creator_name" jdbcType="VARCHAR" property="creatorName" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="modifier_id" jdbcType="VARCHAR" property="modifierId" />
+    <result column="modifier_name" jdbcType="VARCHAR" property="modifierName" />
+    <result column="modify_time" jdbcType="TIMESTAMP" property="modifyTime" />
+    <result column="state" jdbcType="VARCHAR" property="state" />
+    <result column="warehouse_Id" jdbcType="VARCHAR" property="warehouseId" />
+    <result column="warehouse_Name" jdbcType="VARCHAR" property="warehouseName" />
+    <result column="maritalstatus" jdbcType="VARCHAR" property="maritalstatus" />
+    <result column="schooling" jdbcType="VARCHAR" property="schooling" />
+    <result column="salary" jdbcType="VARCHAR" property="salary" />
+    <result column="is_pinlessmobile" jdbcType="VARCHAR" property="isPinlessmobile" />
+    <result column="is_pinlessemail" jdbcType="VARCHAR" property="isPinlessemail" />
+    <result column="pic" jdbcType="VARCHAR" property="pic" />
+    <result column="pic_id" jdbcType="VARCHAR" property="picId" />
+    <result column="id_card" jdbcType="VARCHAR" property="idCard" />
+    <result column="card_endtime" jdbcType="DATE" property="cardEndtime" />
+    <result column="card_address" jdbcType="VARCHAR" property="cardAddress" />
+    <result column="inner_picId" jdbcType="VARCHAR" property="innerPicid" />
+    <result column="inner_pic" jdbcType="VARCHAR" property="innerPic" />
+    <result column="inner_name" jdbcType="VARCHAR" property="innerName" />
+    <result column="inner_area" jdbcType="VARCHAR" property="innerArea" />
+    <result column="inner_introduce" jdbcType="VARCHAR" property="innerIntroduce" />
+  </resultMap>
+</mapper>
