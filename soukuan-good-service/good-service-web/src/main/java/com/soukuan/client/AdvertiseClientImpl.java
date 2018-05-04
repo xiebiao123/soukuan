@@ -6,6 +6,7 @@ import com.soukuan.common.good.domain.Advertise;
 import com.soukuan.domain.ResponseEntity;
 import com.soukuan.domain.ResponseEntityBuilder;
 import com.soukuan.service.AdvertiseService;
+import com.soukuan.util.BeanUtils;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
@@ -51,7 +52,7 @@ public class AdvertiseClientImpl implements  AdvertiseClient {
     @GetMapping("/list")
     public ResponseEntity list(AdvertiseCondition advertise) {
         PageHelper.startPage(advertise.getPageNum(), advertise.getPageSize());
-        List<Advertise> list = advertiseService.findAll();
+        List<Advertise> list = advertiseService.find(BeanUtils.copyObject(advertise,Advertise.class));
         return ResponseEntityBuilder.successPage(list);
     }
 }

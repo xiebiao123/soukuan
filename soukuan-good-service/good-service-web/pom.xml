@@ -52,9 +52,11 @@
 
     <!-- 插件 -->
     <build>
+    	<!-- 
         <filters>
             <filter>src/main/resources/config/application-${deploy.env}.properties</filter>
         </filters>
+         -->
         <resources>
             <resource>
                 <directory>src/main/resources/</directory>
@@ -62,7 +64,7 @@
             </resource>
         </resources>
         <plugins>
-            <!--打包插件-->
+        	<!--打包插件 -->
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
@@ -70,12 +72,13 @@
                     <finalName>soukuan-good-service</finalName>
                 </configuration>
             </plugin>
-            <!--测试插件-->
+            <!--测试插件 -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
             </plugin>
         </plugins>
+        
     </build>
 
 </project>

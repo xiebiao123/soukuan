@@ -11,7 +11,7 @@
     </parent>
 
     <groupId>com.soukuan</groupId>
-    <artifactId>soukuan.service</artifactId>
+    <artifactId>soukuan-service</artifactId>
     <packaging>pom</packaging>
     <version>1.0-SNAPSHOT</version>
     <modules>
@@ -20,53 +20,5 @@
         <module>soukuan-car-service</module>
         <module>soukuan-user-center</module>
     </modules>
-
-
-    <!-- 定义所有子模块需要的依赖 -->
-    <dependencies>
-        <!--内部引用-->
-        <dependency>
-            <groupId>com.soukuan</groupId>
-            <artifactId>soukuan-data-source-starter</artifactId>
-            <version>1.0-SNAPSHOT</version>
-        </dependency>
-        <dependency>
-            <groupId>com.soukuan</groupId>
-            <artifactId>soukuan-swagger-starter</artifactId>
-            <version>1.0-SNAPSHOT</version>
-        </dependency>
-        <dependency>
-            <groupId>com.soukuan</groupId>
-            <artifactId>soukuan-redis-starter</artifactId>
-            <version>1.0-SNAPSHOT</version>
-        </dependency>
-        <dependency>
-            <groupId>com.soukuan</groupId>
-            <artifactId>soukuan-common</artifactId>
-            <version>1.0-SNAPSHOT</version>
-        </dependency>
-
-        <!--SpringCloud引用-->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-eureka</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-config</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-feign</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-zipkin</artifactId>
-        </dependency>
-    </dependencies>
 
 </project>
