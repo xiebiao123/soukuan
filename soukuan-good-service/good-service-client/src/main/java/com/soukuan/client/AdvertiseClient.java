@@ -13,20 +13,23 @@ import org.springframework.web.bind.annotation.RequestParam;
 * DateTime  2018-04-21.
 * Version V1.0.0
 */
-@FeignClient(name="good-service",path = "advertise")
+@FeignClient(name="soukuan-good-service",path = "advertise")
 public interface AdvertiseClient {
 
+    @PostMapping("/test")
+    void test();
+
     @PostMapping("/add")
-    public ResponseEntity add(Advertise advertise);
+    ResponseEntity add(Advertise advertise);
 
     @PostMapping("/delete")
-    ResponseEntity delete(@RequestParam Long id);
+    ResponseEntity delete(@RequestParam("id") Long id);
 
     @PostMapping("/update")
     ResponseEntity update(Advertise advertise);
 
     @PostMapping("/detail")
-    ResponseEntity detail(@RequestParam Long id);
+    ResponseEntity detail(@RequestParam("id") Long id);
 
     @PostMapping("/list")
     ResponseEntity list(AdvertiseCondition advertise);
