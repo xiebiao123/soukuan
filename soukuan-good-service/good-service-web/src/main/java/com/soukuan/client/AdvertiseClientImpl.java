@@ -22,35 +22,42 @@ import java.util.List;
 * Version V1.0.0
 */
 @RestController
+@RequestMapping("advertise")
 public class AdvertiseClientImpl implements  AdvertiseClient {
 
     @Resource
     private AdvertiseService advertiseService;
 
+    @PostMapping("/test")
     public void test() {
         System.out.println("hello good-service");
     }
 
+    @PostMapping("/add")
     public ResponseEntity add(Advertise advertise) {
         advertiseService.save(advertise);
         return ResponseEntityBuilder.success();
     }
 
+    @PostMapping("/delete")
     public ResponseEntity delete(@RequestParam Long id) {
         int result = advertiseService.deleteById(id);
         return  ResponseEntityBuilder.success(result);
     }
 
+    @PostMapping("/update")
     public ResponseEntity update(Advertise advertise) {
         int result =  advertiseService.update(advertise);
         return ResponseEntityBuilder.success(result);
     }
 
+    @PostMapping("/detail")
     public ResponseEntity detail(@RequestParam Long id) {
         Advertise advertise = advertiseService.findById(id);
         return  ResponseEntityBuilder.success(advertise);
     }
 
+    @PostMapping("/list")
     public ResponseEntity list(AdvertiseCondition advertise) {
         PageHelper.startPage(advertise.getPageNum(), advertise.getPageSize());
         List<Advertise> list = advertiseService.find(BeanUtils.copyObject(advertise,Advertise.class));
