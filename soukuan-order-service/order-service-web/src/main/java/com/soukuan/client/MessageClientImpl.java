@@ -1,16 +1,14 @@
 package com.soukuan.client;
 
 import com.github.pagehelper.PageHelper;
+import com.soukuan.common.good.domain.Advertise;
 import com.soukuan.common.order.condition.MessageCondition;
 import com.soukuan.common.order.domain.Message;
 import com.soukuan.domain.ResponseEntity;
 import com.soukuan.domain.ResponseEntityBuilder;
 import com.soukuan.service.MessageService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import java.util.List;
@@ -25,20 +23,22 @@ import java.util.List;
 @RequestMapping("message")
 public class MessageClientImpl implements MessageClient {
 
-    @Autowired
+    @Resource
     private MessageService messageService;
-    @Autowired
+    @Resource
     private AdvertiseClient advertiseClient;
 
     @PostMapping("/test")
     public void test(Message message) {
-        advertiseClient.test();
+        Advertise advertise = new Advertise();
+        advertise.setAreaName("新疆");
+        advertiseClient.add(advertise);
         System.out.println("hello order-service");
     }
 
 
     @PostMapping("/add")
-    public ResponseEntity add(Message message) {
+    public ResponseEntity add(@RequestBody Message message) {
         messageService.save(message);
         return ResponseEntityBuilder.success();
     }
