@@ -60,7 +60,6 @@ debug:当此属性设置为true时，将打印出logback内部日志信息，实
         </filter>
     </appender>
 
-    <!--
     <appender name="kafkaAppender" class="com.github.danielwegener.logback.kafka.KafkaAppender">
         <encoder class="net.logstash.logback.encoder.LoggingEventCompositeJsonEncoder">
             <providers>
@@ -85,46 +84,30 @@ debug:当此属性设置为true时，将打印出logback内部日志信息，实
                 </pattern>
             </providers>
         </encoder>
-        <topic>logs</topic>
+        <topic>kafka_to_logstash</topic>
         <keyingStrategy class="com.github.danielwegener.logback.kafka.keying.NoKeyKeyingStrategy" />
         <deliveryStrategy class="com.github.danielwegener.logback.kafka.delivery.AsynchronousDeliveryStrategy" />
-        <producerConfig>bootstrap.servers=dev-kafka-service.wanshifu.com:9092</producerConfig>
+        <!-- each <producerConfig> translates to regular kafka-client config (format: key=value) -->
+        <!-- producer configs are documented here: https://kafka.apache.org/documentation.html#newproducerconfigs -->
+        <!-- bootstrap.servers is the only mandatory producerConfig -->
+        <producerConfig>bootstrap.servers=localhost:9092</producerConfig>
+        <!-- this is the fallback appender if kafka is not available. -->
         <appender-ref ref="STDOUT" />
     </appender>
-    -->
+
     <springProfile name="local,dev,test">
         <logger name="com.soukuan.mapper" level="DEBUG"/>
-        <logger name="com.soukuan.client" level="DEBUG"/>
-        <logger name="com.soukuan.service.impl" level="DEBUG"/>
-        <!--<logger name="com.soukuan.log.aops.ServiceLogAspect" level="DEBUG"/>-->
-        <!--<logger name="com.soukuan.log.aops.ControllerLogAspect" level="DEBUG">-->
-            <!--<appender-ref ref="infoLogFileAppender"/>-->
-        <!--</logger>-->
-        <!--<logger name="com.soukuan.api.service" level="DEBUG">-->
-            <!--<appender-ref ref="infoLogFileAppender"/>-->
-        <!--</logger>-->
-        <root level="INFO">
-            <appender-ref ref="STDOUT"/>
-        </root>
     </springProfile>
+
     <springProfile name="prod">
-        <!--<logger name="com.soukuan.mapper" level="INFO"/>-->
-        <!--<logger name="com.soukuan.service" level="INFO">-->
-            <!--<appender-ref ref="infoLogFileAppender"/>-->
-        <!--</logger>-->
-        <!--<logger name="com.soukuan.log.aops.ControllerLogAspect" level="INFO">-->
-            <!--<appender-ref ref="infoLogFileAppender"/>-->
-        <!--</logger>-->
         <root level="INFO">
-            <appender-ref ref="STDOUT"/>
+            <appender-ref ref="infoLogFileAppender"/>
+            <appender-ref ref="errorLogFileAppender"/>
         </root>
     </springProfile>
+
     <root level="INFO">
         <appender-ref ref="STDOUT"/>
-        <!--
         <appender-ref ref="kafkaAppender"/>
-        <appender-ref ref="infoLogFileAppender"/>
-        <appender-ref ref="errorLogFileAppender"/>
-        -->
     </root>
 </configuration>
