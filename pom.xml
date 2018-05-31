@@ -19,6 +19,7 @@
         <module>soukuan-good-service</module>
         <module>soukuan-car-service</module>
         <module>soukuan-user-center</module>
+        <module>soukuan-elastic-job-service</module>
     </modules>
 
 </project>
