@@ -1,6 +1,6 @@
 package com.soukuan
 
-import com.soukuan.base.GroovySpockBaseTest;
+import com.soukuan.base.GroovySpockBaseTest
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.ContextConfiguration;

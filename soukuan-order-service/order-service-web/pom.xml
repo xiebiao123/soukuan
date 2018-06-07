@@ -12,6 +12,7 @@
     <artifactId>order-service-web</artifactId>
 
     <dependencies>
+
         <dependency>
             <groupId>com.soukuan</groupId>
             <artifactId>order-service-client</artifactId>
@@ -23,6 +24,7 @@
             <artifactId>good-service-client</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
+
     </dependencies>
 
     <!--多环境部署配置-->
