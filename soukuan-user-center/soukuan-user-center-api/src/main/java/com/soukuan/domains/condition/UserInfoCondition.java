@@ -1,8 +1,8 @@
-package com.soukuan.domains.po;
+package com.soukuan.domains.condition;
 
+import com.soukuan.web.page.Pager;
 import lombok.Data;
 
-import javax.persistence.*;
 import java.io.Serializable;
 
 
@@ -12,15 +12,12 @@ import java.io.Serializable;
 * DateTime  2018-06-08.
 * Version V1.0.0
 */
-@Table(name = "t_user_info")
 @Data
-public class UserInfo implements Serializable{
+public class UserInfoCondition extends Pager implements Serializable{
 
     /**
      * id
      */
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     /**
@@ -56,13 +53,11 @@ public class UserInfo implements Serializable{
     /**
      * 创建时间
      */
-    @Column(name = "create_time")
     private java.util.Date createTime;
 
     /**
      * 修改时间
      */
-    @Column(name = "modify_time")
     private java.util.Date modifyTime;
 
 }

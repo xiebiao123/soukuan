@@ -1,7 +1,7 @@
 package com.soukuan.api;
 
-import com.soukuan.domains.po.UserInfo;
-import com.soukuan.domains.condition.UserInfoCondition;
+import com.soukuan.domains.po.Role;
+import com.soukuan.domains.condition.RoleCondition;
 import com.soukuan.web.page.SimplePageInfo;
 import org.springframework.cloud.netflix.feign.FeignClient;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -15,21 +15,21 @@ import java.util.List;
 * DateTime  2018-06-08.
 * Version V1.0.0
 */
-@FeignClient(name = "soukuan-user-center",path = "/userInfo")
-public interface UserInfoApi {
+@FeignClient(name = "soukuan-user-center",path = "/role")
+public interface RoleApi {
 
     @PostMapping("/add")
-    void add(UserInfo userInfo);
+    void add(Role role);
 
     @PostMapping("/delete")
     int delete(@RequestParam("id") Long id);
 
     @PostMapping("/update")
-    int update(UserInfo userInfo);
+    int update(Role role);
 
     @PostMapping("/detail")
-    UserInfo detail(@RequestParam("id") Long id);
+    Role detail(@RequestParam("id") Long id);
 
     @PostMapping("/list")
-    SimplePageInfo<List<UserInfo>> list(UserInfoCondition userInfoCondition);
+    SimplePageInfo<List<Role>> list(RoleCondition roleCondition);
 }

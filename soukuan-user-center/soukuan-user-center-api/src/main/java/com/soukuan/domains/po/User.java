@@ -12,9 +12,9 @@ import java.io.Serializable;
 * DateTime  2018-06-08.
 * Version V1.0.0
 */
-@Table(name = "t_user_info")
+@Table(name = "sys_user")
 @Data
-public class UserInfo implements Serializable{
+public class User implements Serializable{
 
     /**
      * id
@@ -32,26 +32,6 @@ public class UserInfo implements Serializable{
      * 密码
      */
     private String password;
-
-    /**
-     * 邮件
-     */
-    private String email;
-
-    /**
-     * 电话
-     */
-    private String phone;
-
-    /**
-     * 状态 1正常 2冻结 3销户
-     */
-    private Integer status;
-
-    /**
-     * 角色
-     */
-    private String role;
 
     /**
      * 创建时间

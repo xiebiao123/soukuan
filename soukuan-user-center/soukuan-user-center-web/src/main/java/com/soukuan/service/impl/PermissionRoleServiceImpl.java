@@ -1,8 +1,8 @@
 package com.soukuan.service.impl;
 
-import com.soukuan.domains.po.UserInfo;
-import com.soukuan.mapper.UserInfoMapper;
-import com.soukuan.service.UserInfoService;
+import com.soukuan.domains.po.PermissionRole;
+import com.soukuan.mapper.PermissionRoleMapper;
+import com.soukuan.service.PermissionRoleService;
 import com.soukuan.web.templ.AbstractService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -17,9 +17,9 @@ import javax.annotation.Resource;
 */
 @Service
 @Transactional
-public class UserInfoServiceImpl extends AbstractService<UserInfo> implements UserInfoService {
+public class PermissionRoleServiceImpl extends AbstractService<PermissionRole> implements PermissionRoleService {
 
     @Resource
-    private UserInfoMapper userInfoMapper;
+    private PermissionRoleMapper permissionRoleMapper;
 
 }

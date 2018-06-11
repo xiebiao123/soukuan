@@ -1,6 +1,6 @@
 package com.soukuan.mapper;
 
-import com.soukuan.domains.po.UserInfo;
+import com.soukuan.domains.po.Permission;
 import com.soukuan.web.templ.IBaseCommMapper;
 
 
@@ -11,6 +11,6 @@ import com.soukuan.web.templ.IBaseCommMapper;
 * Version V1.0.0
 */
 
-public interface UserInfoMapper extends IBaseCommMapper<UserInfo>{
+public interface PermissionMapper extends IBaseCommMapper<Permission>{
 
 }

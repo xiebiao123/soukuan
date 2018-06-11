@@ -1,6 +1,6 @@
 package com.soukuan.service;
 
-import com.soukuan.domains.po.UserInfo;
+import com.soukuan.domains.po.User;
 import com.soukuan.web.templ.Service;
 
 /**
@@ -9,6 +9,6 @@ import com.soukuan.web.templ.Service;
 * DateTime  2018-06-08.
 * Version V1.0.0
 */
-public interface UserInfoService extends Service<UserInfo> {
+public interface UserService extends Service<User> {
 
 }
