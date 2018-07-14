@@ -31,15 +31,12 @@
     <!--多环境部署配置-->
     <profiles>
         <profile>
-            <id>test</id>
+            <id>local</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
             <properties>
-                <deploy.env>test</deploy.env>
-            </properties>
-        </profile>
-        <profile>
-            <id>prod</id>
-            <properties>
-                <deploy.env>prod</deploy.env>
+                <deploy.env>local</deploy.env>
             </properties>
         </profile>
         <profile>
@@ -49,12 +46,15 @@
             </properties>
         </profile>
         <profile>
-            <id>local</id>
-            <activation>
-                <activeByDefault>true</activeByDefault>
-            </activation>
+            <id>test</id>
             <properties>
-                <deploy.env>local</deploy.env>
+                <deploy.env>test</deploy.env>
+            </properties>
+        </profile>
+        <profile>
+            <id>prod</id>
+            <properties>
+                <deploy.env>prod</deploy.env>
             </properties>
         </profile>
     </profiles>
